@@ -5,10 +5,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoomBoomBoom</title>
+
+    <!-- bs5 -->
+    <link rel="stylesheet" href="http://127.0.0.1/bs5/css/bootstrap.min.css">
+    <script src="http://127.0.0.1/bs5/js/bootstrap.min.js"></script>
+    <script src="http://127.0.0.1/bs5/js/jquery.js"></script>
+
+    <style>
+        body{
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+
 </head>
 <body>
-    <div class="container align-items-center">
-        
+    <div class="container col-lg-4 col-sm-12">
+
+        <div class="mb-5 mt-5 text-center">
+            <!-- replace h1 with image -->
+            <H1>BoomBoomBoom</H1>
+            <p style="font-size: large;">Know if a university student has Boom or not.</p>
+        </div>
+
+        <div class="mb-2">
+          <label for="indexNumber" class="form-label">Index Number</label>
+          <input type="text" class="form-control" id="indexNumber">
+          <div id="indexNumberHelp" class="form-text">Format: S3881.0040.2017</div>
+
+          <div class="text-center mt-2">
+              <button class="btn btn-warning disabled" id="query">Query</button>
+          </div>
+        </div>
+
+        <div class="text-center mb-5 mt-3" style="border-radius: 5px; display: none;" id="boomStatusContainer">
+            <p id="boomStatus" class="py-3" style="font-weight: bold;"></p>
+            <!-- <p id="boomStatus" class="py-3" style="font-weight: bold;">Vincent G Laizer Has No BOOM!</p> -->
+        </div>
+
+        <div class="mt-4">
+            <blockquote class="p-2 text-center" style="background-color: rgba(167, 170, 165, 0.24); border-radius: 5px;">
+                <p style="font-size: 20px; font-weight: bold;">"With a lot of free time, comes a lot of useless projects"</p>
+                <cite>some famous philosopher</cite>
+            </blockquote>
+        </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+
+            // real time change listner is needed
+            $("#indexNumber").change(function(){
+                // check to see if the format is correct
+                if( $(this).val().toLowerCase() == "s3881.0040.2017" ){
+                    $("#query").removeClass("disabled");
+                    $("#indexNumberHelp").text("Format: S3881.0040.2017");
+                    $("#indexNumberHelp").css('color', 'green');
+                }
+                else{
+                    $("#indexNumberHelp").text("Invalid Format");
+                    $("#indexNumberHelp").css('color', 'red');
+                }
+            });
+
+            $("#query").click(function(){
+                var indexNumber = $("#indexNumber").val();
+
+                $("#boomStatus").text( indexNumber.toUpperCase() + " has BOOM!");
+                $("#boomStatusContainer").show();
+                $("#boomStatusContainer").addClass("bg-success");
+                // $("#boomStatusContainer").addClass("bg-danger");
+            });
+        });
+    </script>
+
 </body>
 </html>
