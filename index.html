@@ -84,8 +84,10 @@
                 var indexNumber = $("#indexNumber").val();
 
                 // send request to server using jquery
-                var url = "http://127.0.0.1:5000/status";
-                $.post(url, {"indexNumber": indexNumber}, function(data, status){
+                var offline_url = "http://127.0.0.1:5000/status";
+                var online_url = "https://boomserver.herokuapp.com/status";
+
+                $.post(online_url, {"indexNumber": indexNumber}, function(data, status){
                     console.log(status);
                     if(data["code"] == 200){
                         if(data["message"]["hasBoom"] == "yes"){
