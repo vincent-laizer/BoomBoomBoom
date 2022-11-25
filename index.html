@@ -95,8 +95,9 @@
                 // send request to server using jquery
                 var offline_url = "http://127.0.0.1:5000/status";
                 var online_url = "https://boomserver.herokuapp.com/status";
+                var alt_url = "http://boomboomboom.pythonanywhere.com/status";
 
-                $.post(online_url, {"indexNumber": indexNumber}, function(data, status){
+                $.post(alt_url, {"indexNumber": indexNumber}, function(data, status){
                     console.log(status);
                     if(data["code"] == 200){
                         if(data["message"]["hasBoom"] == "yes"){
