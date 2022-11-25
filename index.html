@@ -97,7 +97,7 @@
                 var online_url = "https://boomserver.herokuapp.com/status";
                 var alt_url = "https://boomboomboom.pythonanywhere.com/status";
 
-                $.post(alt_url, {"indexNumber": indexNumber}, function(data, status){
+                $.post(online_url, {"indexNumber": indexNumber}, function(data, status){
                     console.log(status);
                     if(data["code"] == 200){
                         if(data["message"]["hasBoom"] == "yes"){
